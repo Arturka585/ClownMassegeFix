@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Clown message 🤡</string>
+    <string name="tab_text_1">Чаты</string>
+    <string name="tab_text_2">Группы</string>
+    <string name="tab_text_3">Контакты</string>
+</resources>

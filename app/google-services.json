@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "585436656740",
+    "project_id": "clown-message",
+    "storage_bucket": "clown-message.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585436656740:android:55985f17e903423016db71",
+        "android_client_info": {
+          "package_name": "com.example.clownmassegefix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585436656740-4a0fnloidrcv8o702cs3f318s5at962s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8CFihu92_wsyahD-RamNy81rPyhq3MV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585436656740-4a0fnloidrcv8o702cs3f318s5at962s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585436656740:android:ca4c77a20d7da16b16db71",
+        "android_client_info": {
+          "package_name": "com.example.clownmessagemaybegood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585436656740-4a0fnloidrcv8o702cs3f318s5at962s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8CFihu92_wsyahD-RamNy81rPyhq3MV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585436656740-4a0fnloidrcv8o702cs3f318s5at962s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
