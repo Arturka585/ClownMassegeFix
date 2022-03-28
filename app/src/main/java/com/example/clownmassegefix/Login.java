@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
 
@@ -24,8 +26,14 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent login = new Intent(Login.this, MainActivity.class);
-                startActivity(login);
+                        if (TextUtils.isEmpty(email.getText())) {
+                            Toast.makeText(Login.this, "Введите вашу почту", Toast.LENGTH_LONG).show();
+                        }
+                        if (TextUtils.isEmpty(password.getText())) {
+                            Toast.makeText(Login.this, "Введите пароль", Toast.LENGTH_LONG).show();
+                        }
+               startActivity( new Intent(Login.this, MainActivity.class));
+
             }
         });
 
