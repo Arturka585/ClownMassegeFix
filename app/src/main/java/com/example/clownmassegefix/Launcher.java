@@ -27,19 +27,16 @@ public class Launcher extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences pref = getPreferences(MODE_PRIVATE);
-                if (currentUser == null) {
-                    Intent i = new Intent(Launcher.this, Registration.class);
-                    startActivity(i);
-                    finish();
-                }else {
-                    Intent i = new Intent(Launcher.this, Registration.class);
-                    startActivity(i);
-                }
+        new Handler().postDelayed(() -> {
+            SharedPreferences pref = getPreferences(MODE_PRIVATE);
+            if (currentUser == null) {
+                Intent i = new Intent(Launcher.this, Login.class);
+                startActivity(i);
+                finish();
+            }else {
+                Intent i = new Intent(Launcher.this, MainActivity.class);
+                startActivity(i);
             }
-            },0*1000);
+        },0*1000);
     }
 }
