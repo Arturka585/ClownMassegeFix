@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = binding.tabs;
+        TabLayout tabs = findViewById (R.id.Tabs);
         tabs.setupWithViewPager(viewPager);
 
         Toast.makeText (this, "Добро пожаловать обратно 🙃", Toast.LENGTH_SHORT).show ();

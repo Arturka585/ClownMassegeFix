@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/Search"
+        android:title="Поиск"
+        app:showAsAction="never" />
+    <item
+        android:title="Создать группу"
+        android:id="@+id/CreateGroup"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Настройки"
+        android:id="@+id/Settings"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/SingOut"
+        android:title="Выйти"
+        android:visible="true"
+        app:showAsAction="never" />
+
+</menu>
