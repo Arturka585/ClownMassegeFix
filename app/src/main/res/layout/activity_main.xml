@@ -64,6 +64,7 @@
         android:background="@color/design_default_color_primary"
         android:backgroundTint="@color/design_default_color_primary"
         android:clickable="true"
+        app:backgroundTint="@color/design_default_color_primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"
