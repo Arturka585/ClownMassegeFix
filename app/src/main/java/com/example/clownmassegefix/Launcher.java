@@ -21,7 +21,6 @@ public class Launcher extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
-        getSupportActionBar().hide();
     }
 
     @Override
@@ -30,7 +29,7 @@ public class Launcher extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             SharedPreferences pref = getPreferences(MODE_PRIVATE);
             if (currentUser == null) {
-                Intent i = new Intent(Launcher.this, Login.class);
+                Intent i = new Intent(Launcher.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }else {
