@@ -50,6 +50,7 @@ public class Login extends AppCompatActivity {
                      if (task.isSuccessful ()){
                          Toast.makeText (Login.this, "Вы успешно авторизировались!", Toast.LENGTH_SHORT).show ();
                          startActivity (new Intent (Login.this,MainActivity.class));
+                         Login.this.finish ();
                      }else {
                          Toast.makeText (Login.this, "Вы не авторизировались, обратитесь в поддержку!!", Toast.LENGTH_SHORT).show ();
                      }
@@ -59,9 +60,13 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        singUp.setOnClickListener (view -> startActivity (new Intent (Login.this,Registration.class)));
-
-        getSupportActionBar().hide();
+        singUp.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                Login.this.startActivity (new Intent (Login.this, Registration.class));
+                Login.this.finish ();
+            }
+        });
     }
 
 }

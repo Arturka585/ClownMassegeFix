@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Registration extends AppCompatActivity {
@@ -30,8 +32,6 @@ public class Registration extends AppCompatActivity {
 
         Authentication = FirebaseAuth.getInstance();
 
-        getSupportActionBar().hide();
-
 
         singUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +47,7 @@ public class Registration extends AppCompatActivity {
                 }
                 if (TextUtils.isEmpty(mConfirmPassword.getText())) {
                     if (mConfirmPassword == mPassword) {
-                        Toast.makeText(Registration.this, "Пароли не совпадают", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration.this, "Пароли не совпадают", Toast.LENGTH_LONG).show();
                     }
                     else {Toast.makeText(Registration.this, "Подтвердите пароль", Toast.LENGTH_LONG).show();}
                 }
@@ -56,18 +56,26 @@ public class Registration extends AppCompatActivity {
                 // Registration user
 
 
-                Authentication.createUserWithEmailAndPassword(mEmail.getText().toString().trim(),mPassword.getText().toString().trim()).addOnCompleteListener(task -> {
+                Authentication.createUserWithEmailAndPassword(mEmail.getText().toString().trim(),mPassword.getText().toString().trim()).addOnCompleteListener(task ->
+                {
                     if (task.isSuccessful()) {
-                        Toast.makeText(Registration.this, "Вы зарегестрировались!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration.this, "Вы зарегестрировались! 😊", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(Registration.this, MainActivity.class));
+                        Registration.this.finish ();
                     } else {
-                        Toast.makeText(Registration.this, "Вы не зарегестрированны, обратитесь в поддержку", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Registration.this, "Вы не зарегестрированны, обратитесь в поддержку 😅", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
 
 
-        singIn.setOnClickListener(view -> startActivity(new Intent(Registration.this, Login.class)));
+        singIn.setOnClickListener(new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                Registration.this.startActivity (new Intent (Registration.this, Login.class));
+                Registration.this.finish ();
+            }
+        });
     }
 }

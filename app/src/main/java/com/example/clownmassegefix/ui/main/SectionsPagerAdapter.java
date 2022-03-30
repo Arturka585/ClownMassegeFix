@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.clownmassegefix.Chats;
-import com.example.clownmassegefix.Contacts;
+import com.example.clownmassegefix.Settings;
 import com.example.clownmassegefix.Groups;
 import com.example.clownmassegefix.R;
 
@@ -39,7 +39,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new Groups();
                 return fragment;
             case 2:
-                fragment = new Contacts();
+                fragment = new Settings ();
                 return fragment;
 
         }

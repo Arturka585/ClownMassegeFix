@@ -9,10 +9,12 @@
 
     <Button
         android:id="@+id/SingIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="199dp"
+        android:layout_height="45dp"
         android:layout_marginTop="68dp"
+        android:background="@color/purple_500"
         android:text="Войти"
+        android:textColor="#EBE0FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,17 +22,19 @@
 
     <Button
         android:id="@+id/Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="194dp"
+        android:layout_height="48dp"
         android:layout_marginTop="28dp"
+        android:background="@color/purple_500"
         android:text="Регистрация"
+        android:textColor="#EBE0FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SingIn" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/Email"
         android:layout_width="212dp"
         android:layout_height="57dp"
         android:layout_marginTop="8dp"
@@ -38,8 +42,11 @@
         android:hint="Ваша почта"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:shadowColor="@color/purple_500"
         android:textColor="#EBE0FF"
+        android:textColorHighlight="@color/purple_500"
+        android:textColorLink="@color/purple_500"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -69,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/Email" />
 
     <TextView
         android:id="@+id/textView2"

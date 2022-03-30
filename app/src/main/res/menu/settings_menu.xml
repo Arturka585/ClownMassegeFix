@@ -17,7 +17,7 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/SingOut"
+        android:id="@+id/SingOutMenu"
         android:title="Выйти"
         android:visible="true"
         app:showAsAction="never" />
