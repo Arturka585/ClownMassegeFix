@@ -16,8 +16,7 @@ public class Launcher extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
-        FirebaseAuth currentUser = FirebaseAuth.getInstance ();
-        currentUser.getCurrentUser ();
+        FirebaseUser currentUser = FirebaseAuth.getInstance ().getCurrentUser ();
 
         new Handler().postDelayed(new Runnable () {
             @Override
