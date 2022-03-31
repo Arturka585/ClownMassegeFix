@@ -12,7 +12,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Имя пользователя"
         android:textColor="#EBE0FF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,8 +37,8 @@
 
     <Button
         android:id="@+id/Register"
-        android:layout_width="209dp"
-        android:layout_height="45dp"
+        android:layout_width="210dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@color/purple_500"
         android:text="Зарегестрироваться"
@@ -50,7 +50,7 @@
 
     <Button
         android:id="@+id/SingIn"
-        android:layout_width="216dp"
+        android:layout_width="210dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@color/purple_500"
@@ -144,8 +144,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="184dp"
-        android:layout_height="134dp"
+        android:layout_width="154dp"
+        android:layout_height="104dp"
         android:layout_marginTop="4dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
