@@ -15,11 +15,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity {
-
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,22 +28,19 @@ public class Login extends AppCompatActivity {
         Button singUp = findViewById(R.id.Register);
         EditText email = findViewById(R.id.Email);
         EditText password = findViewById(R.id.Password);
-        FirebaseAuth Authentication;
+        FirebaseAuth Authentication= FirebaseAuth.getInstance();
 
-        Authentication = FirebaseAuth.getInstance();
 
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Login.this, MainActivity.class));
-
                 if (TextUtils.isEmpty(email.getText())) {
                     Toast.makeText(Login.this, "Введите вашу почту", Toast.LENGTH_LONG).show();
                 }
                 if (password.getText().length() < 6) {
                     Toast.makeText(Login.this, "Введите пароль, состоящий из 6 или более символов", Toast.LENGTH_LONG).show();
-                }
+                }else {
                 Authentication.signInWithEmailAndPassword (email.getText ().toString ().trim (),password.getText ().toString ().trim ()).addOnCompleteListener (new OnCompleteListener<AuthResult> () {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -56,7 +53,7 @@ public class Login extends AppCompatActivity {
                      }
                     }
                 });
-
+                }
             }
         });
 
