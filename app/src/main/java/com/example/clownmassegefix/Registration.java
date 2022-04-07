@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.clownmassegefix.databinding.ActivityRegistrationBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,17 +23,14 @@ import java.util.HashMap;
 
 public class Registration extends AppCompatActivity {
 
+    private ActivityRegistrationBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        binding = ActivityRegistrationBinding.inflate (getLayoutInflater ());
+        setContentView (binding.getRoot ());
 
-        Button singUp = findViewById (R.id.Register);
-        Button singIn = findViewById (R.id.SingIn);
-        EditText userName = findViewById (R.id.UserName);
-        EditText mEmail = findViewById (R.id.Email);
-        EditText mPassword = findViewById (R.id.Password);
-        EditText mConfirmPassword = findViewById (R.id.Confirm_Password);
         DatabaseReference rootReference;
         FirebaseAuth Authentication;
 
@@ -40,20 +38,20 @@ public class Registration extends AppCompatActivity {
         rootReference = FirebaseDatabase.getInstance ().getReference ("Users");
 
 
-        singUp.setOnClickListener(new View.OnClickListener() {
+        binding.Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(mEmail.getText())) {
+                if (TextUtils.isEmpty(binding.Email.getText())) {
                     Toast.makeText(Registration.this, "Введите вашу почту", Toast.LENGTH_LONG).show();
                 }
-                if (TextUtils.isEmpty(userName.getText())) {
+                if (TextUtils.isEmpty(binding.UserName.getText())) {
                     Toast.makeText(Registration.this, "Введите ваше имя", Toast.LENGTH_LONG).show();
                 }
-                if (mPassword.getText().length() < 6) {
+                if (binding.Password.getText().length() < 6) {
                     Toast.makeText(Registration.this, "Введите пароль, состоящий из 6 или более символов", Toast.LENGTH_LONG).show();
                 }
-                if (TextUtils.isEmpty(mConfirmPassword.getText())) {
-                    if (mConfirmPassword == mPassword) {
+                if (TextUtils.isEmpty(binding.ConfirmPassword.getText())) {
+                    if (binding.ConfirmPassword == binding.Password) {
                         Toast.makeText(Registration.this, "Пароли не совпадают", Toast.LENGTH_LONG).show();
                     }
                     else {Toast.makeText(Registration.this, "Подтвердите пароль", Toast.LENGTH_LONG).show();}
@@ -65,7 +63,7 @@ public class Registration extends AppCompatActivity {
                 // Registration user
 
 
-                Authentication.createUserWithEmailAndPassword(mEmail.getText().toString().trim(),mPassword.getText().toString().trim()).addOnCompleteListener(task ->
+                Authentication.createUserWithEmailAndPassword(binding.Email.getText().toString().trim(),binding.Password.getText().toString().trim()).addOnCompleteListener(task ->
                 {
                     if (task.isSuccessful()) {
                         Toast.makeText(Registration.this, "Вы зарегестрировались! 😊", Toast.LENGTH_SHORT).show();
@@ -73,7 +71,7 @@ public class Registration extends AppCompatActivity {
                         Registration.this.finish ();
 
                         HashMap<String, Object> profile = new HashMap<> ();
-                        profile.put ("name",userName.getText ().toString ().trim ());
+                        profile.put ("name",binding.UserName.getText ().toString ().trim ());
 
                         rootReference.child (Authentication.getCurrentUser ().getUid ()).setValue (profile);
                     } else {
@@ -85,10 +83,10 @@ public class Registration extends AppCompatActivity {
         });
 
 
-        singIn.setOnClickListener(new View.OnClickListener () {
+        binding.Register.setOnClickListener(new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-                Registration.this.startActivity (new Intent (Registration.this, Login.class));
+                startActivity (new Intent (Registration.this, Login.class));
                 Registration.this.finish ();
             }
         });

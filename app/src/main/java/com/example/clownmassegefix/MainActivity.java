@@ -1,31 +1,34 @@
 package com.example.clownmassegefix;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.clownmassegefix.databinding.ActivityMainBinding;
 import com.example.clownmassegefix.ui.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    FirebaseAuth currentUser = FirebaseAuth.getInstance ();
 
+    boolean isOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+
+        Animation rotateOpen = AnimationUtils.loadAnimation (this,R.anim.rotate_open_anim);
+        Animation rotateClose = AnimationUtils.loadAnimation (this,R.anim.rotate_close_anim);
+        Animation fromButtom = AnimationUtils.loadAnimation (this,R.anim.from_buttom_anim);
+        Animation toBottom = AnimationUtils.loadAnimation (this,R.anim.to_buttom_anim);
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -35,6 +38,27 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById (R.id.Tabs);
         tabs.setupWithViewPager(viewPager);
+
+        binding.floatingActionButton.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                if ( isOpen == false) {
+                    binding.floatingActionButton.startAnimation (rotateOpen);
+                    binding.floatingActionButton2.startAnimation (fromButtom);
+                    binding.floatingActionButton2.setVisibility (View.VISIBLE);
+                    binding.floatingActionButton3.startAnimation (fromButtom);
+                    binding.floatingActionButton3.setVisibility (View.VISIBLE);
+                    isOpen = true;
+                }else {
+                    binding.floatingActionButton.startAnimation (rotateClose);
+                    binding.floatingActionButton2.startAnimation (toBottom);
+                    binding.floatingActionButton2.setVisibility (View.INVISIBLE);
+                    binding.floatingActionButton3.startAnimation (toBottom);
+                    binding.floatingActionButton3.setVisibility (View.INVISIBLE);
+                    isOpen = false;
+                }
+            }
+        });
 
         Toast.makeText (this, "Добро пожаловать обратно 🙃", Toast.LENGTH_SHORT).show ();
     }

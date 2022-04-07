@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.clownmassegefix.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,29 +20,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Login extends AppCompatActivity {
+
+    private ActivityLoginBinding binding;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        Button login = findViewById(R.id.SingIn);
-        Button singUp = findViewById(R.id.Register);
-        EditText email = findViewById(R.id.Email);
-        EditText password = findViewById(R.id.Password);
         FirebaseAuth Authentication= FirebaseAuth.getInstance();
+        binding = ActivityLoginBinding.inflate (getLayoutInflater ());
+        setContentView (binding.getRoot ());
 
 
-
-        login.setOnClickListener(new View.OnClickListener() {
+        binding.SingIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(email.getText())) {
+                if (TextUtils.isEmpty(binding.Email.getText())) {
                     Toast.makeText(Login.this, "Введите вашу почту", Toast.LENGTH_LONG).show();
                 }
-                if (password.getText().length() < 6) {
+                if (binding.Password.getText().length() < 6) {
                     Toast.makeText(Login.this, "Введите пароль, состоящий из 6 или более символов", Toast.LENGTH_LONG).show();
                 }else {
-                Authentication.signInWithEmailAndPassword (email.getText ().toString ().trim (),password.getText ().toString ().trim ()).addOnCompleteListener (new OnCompleteListener<AuthResult> () {
+                Authentication.signInWithEmailAndPassword (binding.Email.getText ().toString ().trim (),binding.Password.getText ().toString ().trim ()).addOnCompleteListener (new OnCompleteListener<AuthResult> () {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                      if (task.isSuccessful ()){
@@ -57,10 +56,10 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        singUp.setOnClickListener (new View.OnClickListener () {
+        binding.Register.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-                Login.this.startActivity (new Intent (Login.this, Registration.class));
+                startActivity (new Intent (Login.this, Registration.class));
                 Login.this.finish ();
             }
         });

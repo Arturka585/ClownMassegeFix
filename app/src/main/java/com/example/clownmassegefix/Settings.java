@@ -43,16 +43,14 @@ public class Settings extends Fragment {
         FirebaseAuth authentication = FirebaseAuth.getInstance ();
         String currentUserID = authentication.getCurrentUser ().getUid ();
 
-        final int galleryPicture = 1;
 
         binding.profileImage.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-             startActivityForResult ((new Intent ().setAction (Intent.ACTION_GET_CONTENT).setType ("image/*")),galleryPicture);
+                Intent gallery =new Intent ().setAction (Intent.ACTION_GET_CONTENT).setType ("image/*");
+            getActivity ().startActivityForResult (gallery,0);
             }
         });
-
-
 
 
         binding.ChangeName.setOnClickListener (new View.OnClickListener () {
@@ -73,7 +71,6 @@ public class Settings extends Fragment {
                                 }
                             }
                         });
-
             }
         });
 
