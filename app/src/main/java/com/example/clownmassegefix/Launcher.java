@@ -23,7 +23,7 @@ public class Launcher extends AppCompatActivity {
             @Override
             public void run() {
                 if (currentUser != null) {
-                    startActivity (new Intent (Launcher.this, Login.class));
+                    startActivity (new Intent (Launcher.this, Messages.class));
                     Launcher.this.finish ();
                 } else {
                     startActivity (new Intent (Launcher.this, Login.class));

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         Animation rotateOpen = AnimationUtils.loadAnimation (this,R.anim.rotate_open_anim);
         Animation rotateClose = AnimationUtils.loadAnimation (this,R.anim.rotate_close_anim);
-        Animation fromButtom = AnimationUtils.loadAnimation (this,R.anim.from_buttom_anim);
+        Animation fromBottom = AnimationUtils.loadAnimation (this,R.anim.from_buttom_anim);
         Animation toBottom = AnimationUtils.loadAnimation (this,R.anim.to_buttom_anim);
 
 
@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if ( isOpen == false) {
                     binding.floatingActionButton.startAnimation (rotateOpen);
-                    binding.floatingActionButton2.startAnimation (fromButtom);
+                    binding.floatingActionButton2.startAnimation (fromBottom);
                     binding.floatingActionButton2.setVisibility (View.VISIBLE);
-                    binding.floatingActionButton3.startAnimation (fromButtom);
+                    binding.floatingActionButton3.startAnimation (fromBottom);
                     binding.floatingActionButton3.setVisibility (View.VISIBLE);
                     isOpen = true;
                 }else {

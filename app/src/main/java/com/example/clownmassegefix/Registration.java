@@ -67,7 +67,7 @@ public class Registration extends AppCompatActivity {
                 {
                     if (task.isSuccessful()) {
                         Toast.makeText(Registration.this, "Вы зарегестрировались! 😊", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Registration.this, MainActivity.class));
+                        startActivity(new Intent(Registration.this, Messages.class));
                         Registration.this.finish ();
 
                         HashMap<String, Object> profile = new HashMap<> ();
@@ -78,12 +78,13 @@ public class Registration extends AppCompatActivity {
 
                         Toast.makeText(Registration.this, "Вы не зарегестрированны, обратитесь в поддержку 😅", Toast.LENGTH_SHORT).show();
                     }
+
                 });
             }
         });
 
 
-        binding.Register.setOnClickListener(new View.OnClickListener () {
+        binding.SingIn.setOnClickListener(new View.OnClickListener () {
             @Override
             public void onClick(View view) {
                 startActivity (new Intent (Registration.this, Login.class));
