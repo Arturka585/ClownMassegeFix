@@ -1,5 +1,7 @@
 package com.example.clownmassegefix;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Message {
@@ -36,6 +38,7 @@ public class Message {
     }
 
     public void setMessageTime(long messageTime) {
+        Date time = Calendar.getInstance().getTime();
         MessageTime = messageTime;
     }
 }
