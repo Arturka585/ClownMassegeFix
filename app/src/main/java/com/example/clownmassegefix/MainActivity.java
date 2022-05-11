@@ -1,10 +1,16 @@
 package com.example.clownmassegefix;
 
 
+import static android.content.Intent.ACTION_GET_CONTENT;
+import static androidx.core.provider.FontsContractCompat.Columns.RESULT_CODE_OK;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +19,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.clownmassegefix.databinding.ActivityMainBinding;
 import com.example.clownmassegefix.ui.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +70,17 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText (this, "Добро пожаловать обратно 🙃", Toast.LENGTH_SHORT).show ();
     }
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_CODE_OK && data != null){
+//            Uri uri = data.getData();
+//            ImageView userImage = findViewById(R.id.profileImage);
+//            userImage.setImageURI(uri);
+//        }
+//    }
+
 }
 
 

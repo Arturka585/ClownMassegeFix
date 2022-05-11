@@ -1,40 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/incoming_background">
-
-    <TextView
-        android:id="@+id/userNameText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_gravity="top"
-        android:layout_weight="1"
-        android:gravity="top"
-        android:paddingLeft="10dp"
-        android:text="TextView"
-        android:textColor="@color/white" />
+    android:layout_gravity="right"
+    android:background="@drawable/incoming_background"
+    android:minWidth="100dp">
 
     <TextView
         android:id="@+id/messageText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="42dp"
+        android:layout_height="25dp"
         android:layout_above="@+id/timeText"
-        android:layout_below="@+id/userNameText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_gravity="left"
         android:paddingStart="8dp"
         android:paddingTop="3dp"
         android:paddingEnd="8dp"
         android:paddingBottom="3dp"
-        android:text="Hello World"
-        android:textColor="@color/white" />
+        android:text="123"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/timeText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/timeText"
@@ -44,13 +36,14 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="1dp"
         android:layout_weight="1"
         android:gravity="bottom"
         android:paddingRight="15dp"
         android:text="00:00"
         android:textColor="@color/white"
-        tools:layout_editor_absoluteY="3dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

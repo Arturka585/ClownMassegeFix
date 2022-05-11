@@ -45,7 +45,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                      if (task.isSuccessful ()){
                          Toast.makeText (Login.this, "Вы успешно авторизировались!", Toast.LENGTH_SHORT).show ();
-                         startActivity (new Intent (Login.this,MainActivity.class));
+                         startActivity (new Intent (Login.this,Messages.class));
                          Login.this.finish ();
                      }else {
                          Toast.makeText (Login.this, "Вы не авторизировались, обратитесь в поддержку!!", Toast.LENGTH_SHORT).show ();

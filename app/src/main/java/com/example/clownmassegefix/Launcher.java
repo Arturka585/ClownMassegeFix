@@ -18,12 +18,12 @@ public class Launcher extends AppCompatActivity {
         setContentView(R.layout.activity_launcher);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance ().getCurrentUser ();
-
         new Handler().postDelayed(new Runnable () {
             @Override
             public void run() {
+
                 if (currentUser != null) {
-                    startActivity (new Intent (Launcher.this, Messages.class));
+                    startActivity (new Intent (Launcher.this, MainActivity.class));
                     Launcher.this.finish ();
                 } else {
                     startActivity (new Intent (Launcher.this, Login.class));

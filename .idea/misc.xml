@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/ClownMassegeFix/app/src/main/res/layout/activity_launcher.xml" value="0.28888888888888886" />
+        <entry key="..\:/AndroidStudioProjects/ClownMassegeFix/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/ClownMassegeFix/app/src/main/res/layout/activity_messages.xml" value="0.28888888888888886" />
+        <entry key="..\:/AndroidStudioProjects/ClownMassegeFix/app/src/main/res/layout/fragment_chats.xml" value="0.28888888888888886" />
+        <entry key="..\:/AndroidStudioProjects/ClownMassegeFix/app/src/main/res/layout/fragment_main.xml" value="0.28888888888888886" />
+        <entry key="..\:/AndroidStudioProjects/ClownMassegeFix/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/ClownMassegeFix/app/src/main/res/layout/incoming_message.xml" value="0.67" />
+        <entry key="..\:/AndroidStudioProjects/ClownMassegeFix/app/src/main/res/layout/outcoming_message.xml" value="0.16875" />
+        <entry key="..\:/AndroidStudioProjects/ClownMassegeFix/app/src/main/res/layout/users.xml" value="0.28888888888888886" />
         <entry key="..\:/StudioProjects/ClownMassegeFix/app/src/main/res/layout/activity_messages.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/1/AndroidStudioProjects/Clownmassegefix/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.251" />
         <entry key="..\:/Users/1/AndroidStudioProjects/Clownmassegefix/app/src/main/res/drawable/gradient.xml" value="0.251" />
