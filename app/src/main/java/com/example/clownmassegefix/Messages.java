@@ -40,6 +40,7 @@ public class Messages extends AppCompatActivity {
         database.getReference("Messages").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if((adapter != null)){ adapter.clear();}
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
                      String message = dataSnapshot.child("MessageText").getValue().toString();
                      assert message != null;
