@@ -30,8 +30,6 @@ public class Settings extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
         binding = FragmentSettingsBinding.inflate (inflater,container,false);
         return binding.getRoot ();
 
