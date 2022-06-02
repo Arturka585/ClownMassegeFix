@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/Email"
+        android:id="@+id/Phone"
         android:layout_width="212dp"
         android:layout_height="57dp"
         android:layout_marginTop="8dp"
@@ -76,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email" />
+        app:layout_constraintTop_toBottomOf="@+id/Phone" />
 
     <TextView
         android:id="@+id/textView2"

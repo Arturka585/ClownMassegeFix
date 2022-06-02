@@ -34,18 +34,18 @@ public class Login extends AppCompatActivity {
         binding.SingIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(binding.Email.getText())) {
-                    Toast.makeText(Login.this, "Введите вашу почту", Toast.LENGTH_LONG).show();
+                if (TextUtils.isEmpty(binding.Phone.getText())) {
+                    Toast.makeText(Login.this, "Введите вашу почту", Toast.LENGTH_SHORT).show();
                 }
                 if (binding.Password.getText().length() < 6) {
-                    Toast.makeText(Login.this, "Введите пароль, состоящий из 6 или более символов", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, "Введите пароль, состоящий из 6 или более символов", Toast.LENGTH_SHORT).show();
                 }else {
-                Authentication.signInWithEmailAndPassword (binding.Email.getText ().toString ().trim (),binding.Password.getText ().toString ().trim ()).addOnCompleteListener (new OnCompleteListener<AuthResult> () {
+                Authentication.signInWithEmailAndPassword (binding.Phone.getText ().toString ().trim (),binding.Password.getText ().toString ().trim ()).addOnCompleteListener (new OnCompleteListener<AuthResult> () {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                      if (task.isSuccessful ()){
                          Toast.makeText (Login.this, "Вы успешно авторизировались!", Toast.LENGTH_SHORT).show ();
-                         startActivity (new Intent (Login.this,Messages.class));
+                         startActivity (new Intent (Login.this,MainActivity.class));
                          Login.this.finish ();
                      }else {
                          Toast.makeText (Login.this, "Вы не авторизировались, обратитесь в поддержку!!", Toast.LENGTH_SHORT).show ();

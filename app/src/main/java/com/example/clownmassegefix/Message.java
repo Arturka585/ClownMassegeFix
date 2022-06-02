@@ -10,7 +10,7 @@ public class Message {
 
     public Message(){}
 
-    public Message(String MessageText){
+    public Message(String MessageText,String MessageTime){
         this.Username =  Username;
         this.MessageText = MessageText;
         this.MessageTime = MessageTime;

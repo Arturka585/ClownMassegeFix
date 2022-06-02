@@ -64,13 +64,13 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/Email"
+        android:id="@+id/Phone"
         android:layout_width="212dp"
         android:layout_height="57dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Ваша почта"
-        android:inputType="textEmailAddress"
+        android:hint="Ваш номер телефона"
+        android:inputType="phone"
         android:minHeight="48dp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,7 +116,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email" />
+        app:layout_constraintTop_toBottomOf="@+id/Phone" />
 
     <TextView
         android:id="@+id/textView3"
@@ -134,11 +134,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Почта"
+        android:layout_marginTop="16dp"
+        android:text="Номер телефона"
         android:textColor="#EBE0FF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserName" />
 

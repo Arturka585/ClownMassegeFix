@@ -1,10 +1,14 @@
 package com.example.clownmassegefix;
 
+import static androidx.core.provider.FontsContractCompat.Columns.RESULT_CODE_OK;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Settings extends Fragment {
 
@@ -42,16 +47,6 @@ public class Settings extends Fragment {
         DatabaseReference rootReference = FirebaseDatabase.getInstance ().getReference ("Users");
         FirebaseAuth authentication = FirebaseAuth.getInstance ();
         String currentUserID = authentication.getCurrentUser ().getUid ();
-
-
-        binding.profileImage.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick(View view) {
-                Intent gallery =new Intent ().setAction (Intent.ACTION_GET_CONTENT).setType ("image/*");
-            getActivity ().startActivityForResult (gallery,0);
-            }
-        });
-
 
         binding.ChangeName.setOnClickListener (new View.OnClickListener () {
             @Override
@@ -81,10 +76,8 @@ public class Settings extends Fragment {
                         String userName = snapshot.child ("name").getValue ().toString ();
                         binding.userName.setText (userName);
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
 
@@ -93,7 +86,25 @@ public class Settings extends Fragment {
             public void onClick(View view) {
                 FirebaseAuth.getInstance ().signOut ();
                 startActivity (new Intent (Settings.this.getActivity (),Login.class));
+                Settings.this.getActivity().finish();
             }
         });
+        binding.profileImage.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                Intent gallery = new Intent ().setAction (Intent.ACTION_GET_CONTENT).setType ("image/*");
+                startActivityForResult (gallery,1);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_CODE_OK && data != null){
+            Uri uri = data.getData();
+            ImageView userImage = getView().findViewById(R.id.profile_image);
+            userImage.setImageURI(uri);
+        }
     }
 }
