@@ -59,23 +59,6 @@ public class Registration extends AppCompatActivity {
                 }
 
 
-
-                binding.Register.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String phoneNumber = binding.Phone.getText().toString();
-                        PhoneAuthOptions options =
-                                PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
-                                        .setPhoneNumber(phoneNumber)       // Phone number to verify
-                                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                                        .setActivity(Registration)                 // Activity (for callback binding)
-                                        .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
-                                        .build();
-                        PhoneAuthProvider.verifyPhoneNumber(options);
-                    }
-                });
-
-
                 // Registration user
 
                 Authentication.createUserWithEmailAndPassword(binding.Phone.getText().toString().trim(),binding.Password.getText().toString().trim()).addOnCompleteListener(task ->

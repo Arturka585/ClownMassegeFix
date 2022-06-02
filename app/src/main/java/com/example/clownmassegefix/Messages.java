@@ -37,23 +37,36 @@ public class Messages extends AppCompatActivity {
 
         String currentUser = FirebaseAuth.getInstance ().getCurrentUser ().getUid ();
 
-        List<String> messageList = new ArrayList<>();
+        /*List<String> messageList = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.incoming_message,R.id.messageText,messageList);
-        binding.listMessages.setAdapter(adapter);
+        binding.listMessages.setAdapter(adapter);*/
 
-//        List<String> timeList = new ArrayList<>();
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.incoming_message,R.id.timeText,timeList);
-//        binding.listMessages.setAdapter(arrayAdapter);
+        ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
+        CustomAdapter customAdapter = new CustomAdapter(this, objects);
+        binding.listMessages.setAdapter(customAdapter);
+
 
         database.getReference("Messages").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if((adapter != null)){ adapter.clear(); }
+                if((customAdapter != null)){ customAdapter.clear(); }
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                     String message = dataSnapshot.child("MessageText").getValue().toString();
-                     assert message != null;
-                     Toast.makeText(Messages.this, message, Toast.LENGTH_LONG).show();
-                     messageList.add(message);
+                    String message = "";
+                    String timekek = "";
+                    try {
+
+
+                        message = dataSnapshot.child("MessageText").getValue().toString();
+                        timekek = dataSnapshot.child("MessageTime").getValue().toString();
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                    if(message.length() != 0 && timekek.length() != 0 )
+                    {
+                        objects.add(new CustomObject(message, timekek));
+                    }
                 }
             }
 
@@ -63,26 +76,7 @@ public class Messages extends AppCompatActivity {
             }
         });
 
-//        database.getReference("Messages").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                if((arrayAdapter != null)){arrayAdapter.clear();}
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                    String time = dataSnapshot.child("MessageTime").getValue().toString();
-//                    assert time != null;
-//                    timeList.add(time);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
-         adapter.notifyDataSetChanged();
-//         arrayAdapter.notifyDataSetChanged();
+         customAdapter.notifyDataSetChanged();
 
         binding.sendButton.setOnClickListener (new View.OnClickListener () {
             @Override
@@ -95,7 +89,6 @@ public class Messages extends AppCompatActivity {
 
                     database.getReference("Messages").push().setValue(
                             new Message(binding.userMessageText.getText().toString(),time));
-
                     binding.userMessageText.setText ("");
                 }
             }
