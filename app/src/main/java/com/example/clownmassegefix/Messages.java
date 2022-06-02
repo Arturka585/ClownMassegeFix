@@ -37,10 +37,6 @@ public class Messages extends AppCompatActivity {
 
         String currentUser = FirebaseAuth.getInstance ().getCurrentUser ().getUid ();
 
-        /*List<String> messageList = new ArrayList<>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.incoming_message,R.id.messageText,messageList);
-        binding.listMessages.setAdapter(adapter);*/
-
         ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
         CustomAdapter customAdapter = new CustomAdapter(this, objects);
         binding.listMessages.setAdapter(customAdapter);
@@ -54,8 +50,6 @@ public class Messages extends AppCompatActivity {
                     String message = "";
                     String timekek = "";
                     try {
-
-
                         message = dataSnapshot.child("MessageText").getValue().toString();
                         timekek = dataSnapshot.child("MessageTime").getValue().toString();
                     }

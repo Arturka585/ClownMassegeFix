@@ -16,8 +16,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -68,10 +70,9 @@ public class Registration extends AppCompatActivity {
                         startActivity(new Intent(Registration.this, MainActivity.class));
                         Registration.this.finish ();
 
-                        HashMap<String, Object> profile = new HashMap<> ();
-                        profile.put ("name",binding.UserName.getText ().toString ());
-
-                        rootReference.child (Authentication.getCurrentUser ().getUid ()).setValue (profile);
+                        FirebaseUser user = Authentication.getCurrentUser();
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(binding.UserName.getText().toString()).build();
+                        user.updateProfile(profileUpdates);
                     } else {
 
                         Toast.makeText(Registration.this, "Вы не зарегестрированны, обратитесь в поддержку 😅", Toast.LENGTH_SHORT).show();

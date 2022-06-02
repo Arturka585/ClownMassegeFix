@@ -70,7 +70,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Ваш номер телефона"
-        android:inputType="phone"
+        android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
