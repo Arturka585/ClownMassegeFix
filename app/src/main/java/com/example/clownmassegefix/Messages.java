@@ -33,18 +33,30 @@ public class Messages extends AppCompatActivity {
 
         String currentUser = FirebaseAuth.getInstance ().getCurrentUser ().getUid ();
 
-        List<String> messageList = new ArrayList<>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.incoming_message,R.id.messageText,messageList);
-        binding.listMessages.setAdapter(adapter);
+        ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
+        CustomAdapter customAdapter = new CustomAdapter(this, objects);
+        binding.listMessages.setAdapter(customAdapter);
+
 
         database.getReference("Messages").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if((adapter != null)){ adapter.clear();}
+                if((customAdapter != null)){ customAdapter.clear(); }
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                     String message = dataSnapshot.child("MessageText").getValue().toString();
-                     assert message != null;
-                     messageList.add(message);
+                    String message = "";
+                    String timekek = "";
+                    try {
+                        message = dataSnapshot.child("MessageText").getValue().toString();
+                        timekek = dataSnapshot.child("MessageTime").getValue().toString();
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                    if(message.length() != 0 && timekek.length() != 0 )
+                    {
+                        objects.add(new CustomObject(message, timekek));
+                    }
                 }
             }
 
@@ -54,7 +66,7 @@ public class Messages extends AppCompatActivity {
             }
         });
 
-        adapter.notifyDataSetChanged();
+        customAdapter.notifyDataSetChanged();
 
         binding.sendButton.setOnClickListener (new View.OnClickListener () {
             @Override

@@ -3,7 +3,9 @@ package com.example.clownmassegefix;
 
 import static androidx.core.provider.FontsContractCompat.Columns.RESULT_CODE_OK;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.clownmassegefix.databinding.ActivityMainBinding;
@@ -45,6 +48,21 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.Tabs);
         tabs.setupWithViewPager(viewPager);
+
+        final int MY_PERMISSIONS_READ_CONTACTS = 100;
+
+        binding.floatingActionButton3.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                    Manifest.permission.READ_CONTACTS) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                startActivity (new Intent (MainActivity.this,Contacts.class));
+            }else {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_CONTACTS},MY_PERMISSIONS_READ_CONTACTS);
+                }
+            }
+        });
 
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
