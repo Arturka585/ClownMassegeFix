@@ -21,12 +21,12 @@ public class Launcher extends AppCompatActivity {
         new Handler().postDelayed(new Runnable () {
             @Override
             public void run() {
-
                 if (currentUser != null) {
                     startActivity (new Intent (Launcher.this, MainActivity.class));
                     Launcher.this.finish ();
                 } else {
                     startActivity (new Intent (Launcher.this, Login.class));
+                    Launcher.this.finish();
                 }
             }
         },1*1000);

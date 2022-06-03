@@ -1,10 +1,14 @@
 package com.example.clownmassegefix;
 
+import static androidx.core.provider.FontsContractCompat.Columns.RESULT_CODE_OK;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,6 +19,8 @@ import com.example.clownmassegefix.databinding.FragmentSettingsBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Settings extends Fragment {
 
@@ -43,57 +50,41 @@ public class Settings extends Fragment {
         FirebaseAuth authentication = FirebaseAuth.getInstance ();
         String currentUserID = authentication.getCurrentUser ().getUid ();
 
-
-        binding.profileImage.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick(View view) {
-                Intent gallery =new Intent ().setAction (Intent.ACTION_GET_CONTENT).setType ("image/*");
-            getActivity ().startActivityForResult (gallery,0);
-            }
-        });
-
-
         binding.ChangeName.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-
-                HashMap<String, Object> profile = new HashMap<> ();
-                profile.put ("name",binding.userName.getText ().toString ().trim ());
-
-                rootReference.child (currentUserID).setValue (profile)
-                        .addOnCompleteListener (new OnCompleteListener<Void> () {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful ()){
-                                    Toast.makeText (getActivity (), "Смена имени прошла успешно", Toast.LENGTH_SHORT).show ();
-                                }else {
-                                    Toast.makeText (getActivity (), "Смена имени не удалась, обратитесь в поддержку " + task.getException ().toString (), Toast.LENGTH_LONG).show ();
-                                }
-                            }
-                        });
+                FirebaseUser user = authentication.getCurrentUser();
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(binding.userName.getText().toString()).build();
+                user.updateProfile(profileUpdates);
             }
         });
 
-        rootReference.child (currentUserID)
-                .addValueEventListener (new ValueEventListener () {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String userName = snapshot.child ("name").getValue ().toString ();
-                        binding.userName.setText (userName);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+        binding.userName.setText(authentication.getCurrentUser().getDisplayName());
 
         binding.SingOut.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance ().signOut ();
                 startActivity (new Intent (Settings.this.getActivity (),Login.class));
+                Settings.this.getActivity().finish();
             }
         });
+        binding.profileImage.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                Intent gallery = new Intent ().setAction (Intent.ACTION_GET_CONTENT).setType ("image/*");
+                startActivityForResult (gallery,1);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_CODE_OK && data != null){
+            Uri uri = data.getData();
+            ImageView userImage = getView().findViewById(R.id.profile_image);
+            userImage.setImageURI(uri);
+        }
     }
 }

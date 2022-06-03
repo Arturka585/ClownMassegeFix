@@ -1,7 +1,6 @@
 package com.example.clownmassegefix;
 
 
-import static android.content.Intent.ACTION_GET_CONTENT;
 import static androidx.core.provider.FontsContractCompat.Columns.RESULT_CODE_OK;
 
 import android.content.Intent;
@@ -30,56 +29,44 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate (savedInstanceState);
+        super.onCreate(savedInstanceState);
 
-        Animation rotateOpen = AnimationUtils.loadAnimation (this,R.anim.rotate_open_anim);
-        Animation rotateClose = AnimationUtils.loadAnimation (this,R.anim.rotate_close_anim);
-        Animation fromBottom = AnimationUtils.loadAnimation (this,R.anim.from_buttom_anim);
-        Animation toBottom = AnimationUtils.loadAnimation (this,R.anim.to_buttom_anim);
+        Animation rotateOpen = AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
+        Animation rotateClose = AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim);
+        Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_buttom_anim);
+        Animation toBottom = AnimationUtils.loadAnimation(this, R.anim.to_buttom_anim);
 
-
+        CircleImageView profileImage = findViewById(R.id.profile_image);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById (R.id.Tabs);
+        TabLayout tabs = findViewById(R.id.Tabs);
         tabs.setupWithViewPager(viewPager);
 
-        binding.floatingActionButton.setOnClickListener (new View.OnClickListener () {
+        binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ( isOpen == false) {
-                    binding.floatingActionButton.startAnimation (rotateOpen);
-                    binding.floatingActionButton2.startAnimation (fromBottom);
-                    binding.floatingActionButton2.setVisibility (View.VISIBLE);
-                    binding.floatingActionButton3.startAnimation (fromBottom);
-                    binding.floatingActionButton3.setVisibility (View.VISIBLE);
+                if (isOpen == false) {
+                    binding.floatingActionButton.startAnimation(rotateOpen);
+                    binding.floatingActionButton2.startAnimation(fromBottom);
+                    binding.floatingActionButton2.setVisibility(View.VISIBLE);
+                    binding.floatingActionButton3.startAnimation(fromBottom);
+                    binding.floatingActionButton3.setVisibility(View.VISIBLE);
                     isOpen = true;
-                }else {
-                    binding.floatingActionButton.startAnimation (rotateClose);
-                    binding.floatingActionButton2.startAnimation (toBottom);
-                    binding.floatingActionButton2.setVisibility (View.INVISIBLE);
-                    binding.floatingActionButton3.startAnimation (toBottom);
-                    binding.floatingActionButton3.setVisibility (View.INVISIBLE);
+                } else {
+                    binding.floatingActionButton.startAnimation(rotateClose);
+                    binding.floatingActionButton2.startAnimation(toBottom);
+                    binding.floatingActionButton2.setVisibility(View.INVISIBLE);
+                    binding.floatingActionButton3.startAnimation(toBottom);
+                    binding.floatingActionButton3.setVisibility(View.INVISIBLE);
                     isOpen = false;
                 }
             }
         });
-
-        Toast.makeText (this, "Добро пожаловать обратно 🙃", Toast.LENGTH_SHORT).show ();
     }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == RESULT_CODE_OK && data != null){
-//            Uri uri = data.getData();
-//            ImageView userImage = findViewById(R.id.profileImage);
-//            userImage.setImageURI(uri);
-//        }
-//    }
 
 }
 
