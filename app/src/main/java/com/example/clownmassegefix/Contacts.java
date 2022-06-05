@@ -33,8 +33,7 @@ public class Contacts extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        binding.userView.setHasFixedSize(true);
-        binding.userView.setLayoutManager(new LinearLayoutManager(this));
+
 
         binding.floatingActionButton4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,8 +57,7 @@ public class Contacts extends AppCompatActivity {
                 AllUsers.class).build();
 
         FirebaseRecyclerAdapter<AllUsers,AllUsersViewHolder> allUsersView = new FirebaseRecyclerAdapter<AllUsers, AllUsersViewHolder>(
-                options
-        ) {
+                options) {
             @Override
             protected void onBindViewHolder(@NonNull AllUsersViewHolder holder, int position, @NonNull AllUsers model) {
 

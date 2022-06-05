@@ -42,18 +42,18 @@ public class Profile extends AppCompatActivity {
 
         Toast.makeText(this, visitUserId, Toast.LENGTH_SHORT).show();
 
-//        users.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                String userName = snapshot.child("Users").getValue().toString();
-//                binding.profileUsername.setText(userName);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        users.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String userName = snapshot.child("Users").getValue().toString();
+                binding.profileUsername.setText(userName);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 }

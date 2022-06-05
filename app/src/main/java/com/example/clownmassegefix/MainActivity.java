@@ -46,18 +46,15 @@ public class MainActivity extends AppCompatActivity {
 
         final int MY_PERMISSIONS_READ_CONTACTS = 100;
 
-        binding.floatingActionButton2.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.READ_CONTACTS) ==
-                    PackageManager.PERMISSION_GRANTED) {
-                startActivity (new Intent (MainActivity.this,Contacts.class));
-            }else {
-                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_CONTACTS},MY_PERMISSIONS_READ_CONTACTS);
-                }
-            }
-        });
+//        binding.floatingActionButton2.setOnClickListener (new View.OnClickListener () {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity (new Intent (MainActivity.this,Contacts.class));
+//            }else {
+//                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_CONTACTS},MY_PERMISSIONS_READ_CONTACTS);
+//                }
+//            }
+//        });
 
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
