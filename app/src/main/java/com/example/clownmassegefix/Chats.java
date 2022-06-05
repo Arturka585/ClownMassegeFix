@@ -11,17 +11,13 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 
 import com.example.clownmassegefix.databinding.FragmentChatsBinding;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.common.internal.service.Common;
-import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -43,7 +39,36 @@ public class Chats extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
+        List<String> users = new ArrayList<String>();
+        ArrayAdapter<String> list = new ArrayAdapter<String>(getContext(),R.layout.users,R.id.userNames
+                ,users);
+        binding.chatList.setAdapter(list);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot :snapshot.getChildren()){
+                    String userList = dataSnapshot.child("name").getValue().toString();
+                    assert userList !=null;
+                    list.add(userList);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        list.notifyDataSetChanged();
         loadFriends();
+
+        binding.chatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(new Intent(Chats.this.getActivity(),Messages.class));
+            }
+        });
+
 
     }
 

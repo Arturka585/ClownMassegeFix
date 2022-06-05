@@ -70,6 +70,11 @@ public class Registration extends AppCompatActivity {
                         startActivity(new Intent(Registration.this, MainActivity.class));
                         Registration.this.finish ();
 
+                        HashMap<String, Object> profile = new HashMap<> ();
+                        profile.put ("name",binding.UserName.getText ().toString ());
+
+                        rootReference.child (Authentication.getCurrentUser ().getUid ()).setValue (profile);
+
                         FirebaseUser user = Authentication.getCurrentUser();
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(binding.UserName.getText().toString()).build();
                         user.updateProfile(profileUpdates);

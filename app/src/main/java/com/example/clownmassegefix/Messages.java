@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class Messages extends AppCompatActivity {
         binding = ActivityMessagesBinding.inflate (getLayoutInflater ());
         setContentView (binding.getRoot ());
 
-        String currentUser = FirebaseAuth.getInstance ().getCurrentUser ().getUid ();
+        FirebaseAuth currentUser = FirebaseAuth.getInstance ();
 
         ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
         CustomAdapter customAdapter = new CustomAdapter(this, objects);
@@ -74,9 +75,14 @@ public class Messages extends AppCompatActivity {
                 if (TextUtils.isEmpty (binding.userMessageText.getText ())){
                     return;
                 }else {
+
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+                    String time = format.toString();
+
                     database.getReference("Messages").push().setValue(new Message(
-                            "1232",
-                            binding.userMessageText.getText().toString()
+                            currentUser.getCurrentUser().getDisplayName(),
+                            binding.userMessageText.getText().toString(),
+                            time
                     ));
 
                     binding.userMessageText.setText ("");
