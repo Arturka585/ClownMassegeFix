@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_buttom_anim);
         Animation toBottom = AnimationUtils.loadAnimation(this, R.anim.to_buttom_anim);
 
-        CircleImageView profileImage = findViewById(R.id.profile_image);
-
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = binding.viewPager;
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -46,15 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         final int MY_PERMISSIONS_READ_CONTACTS = 100;
 
-//        binding.floatingActionButton2.setOnClickListener (new View.OnClickListener () {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity (new Intent (MainActivity.this,Contacts.class));
-//            }else {
-//                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_CONTACTS},MY_PERMISSIONS_READ_CONTACTS);
-//                }
-//            }
-//        });
+        binding.floatingActionButton2.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Contacts.class));
+            }
+        });
 
         binding.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.clownmassegefix.databinding.ActivityMessagesBinding;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
 
 public class Messages extends AppCompatActivity {
 
@@ -75,15 +77,12 @@ public class Messages extends AppCompatActivity {
                 if (TextUtils.isEmpty (binding.userMessageText.getText ())){
                     return;
                 }else {
+                    String time = new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime());
 
-                    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-                    String time = format.toString();
-
-                    database.getReference("Messages").push().setValue(new Message(
+                    database.getReference("Messages").push().setValue( new Message(
                             currentUser.getCurrentUser().getDisplayName(),
                             binding.userMessageText.getText().toString(),
-                            time
-                    ));
+                            time));
 
                     binding.userMessageText.setText ("");
                 }

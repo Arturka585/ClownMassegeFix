@@ -80,7 +80,7 @@ public class Settings extends Fragment {
                 Settings.this.getActivity().finish();
             }
         });
-        binding.profileImage.setOnClickListener (new View.OnClickListener () {
+        binding.button2.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
                 Intent gallery = new Intent ().setAction (Intent.ACTION_GET_CONTENT).setType ("image/*");

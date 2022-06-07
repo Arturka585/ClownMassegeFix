@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClownMassegeFix">
         <activity
+            android:name=".phoneVerification"
+            android:exported="false" />
+        <activity
             android:name=".Profile"
             android:exported="false" />
         <activity
