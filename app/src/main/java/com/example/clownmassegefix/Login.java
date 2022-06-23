@@ -1,27 +1,30 @@
 package com.example.clownmassegefix;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.clownmassegefix.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -46,7 +49,11 @@ public class Login extends AppCompatActivity {
                 if (TextUtils.isEmpty(binding.Phone.getText())) {
                     Toast.makeText(Login.this, "Введите ваш номер телефона", Toast.LENGTH_LONG).show();
                 }
-                else {startPhoneNumberVerification(binding.Phone.getText().toString().trim());}
+                else {
+                    startPhoneNumberVerification(binding.Phone.getText().toString().trim());
+
+                }
+
             }
         });
 
@@ -84,17 +91,33 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onVerificationFailed(@NonNull FirebaseException e) {
-                Toast.makeText(Login.this, "Не верный номер телефона", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "Не верный номер телефона", Toast.LENGTH_LONG).show();
+                Log.e(TAG,e.getMessage());
             }
             @Override
             public void onCodeSent(@NonNull String verificationId,
                                    @NonNull PhoneAuthProvider.ForceResendingToken token) {
 
-                Toast.makeText(Login.this, "Код подтверждения был отправлен на ваш номер телефона", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Login.this, phoneVerification.class));
+                Toast.makeText(Login.this, "Код подтверждения был отправлен на ваш номер телефона" , Toast.LENGTH_SHORT).show();
                 // Save verification ID and resending token so we can use them later
                 mVerificationId = verificationId;
                 mResendToken = token;
+
+                View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
+                        findViewById(R.id.bottomSheetsContainer));
+
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(Login.this, R.style.BottomSheetsDialogTheme);
+                bottomSheetDialog.findViewById(R.id.confirmButton).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        EditText verifyCode = bottomSheetDialog.findViewById(R.id.verificationCode);
+                        verifyPhoneNumberWithCode(mVerificationId,verifyCode.getText().toString());
+                        bottomSheetDialog.dismiss();
+                    }
+                });
+                bottomSheetDialog.setContentView(bottomSheetView);
+                bottomSheetDialog.show();
+
             }
         };
 
@@ -107,6 +130,12 @@ public class Login extends AppCompatActivity {
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
         // [END start_phone_auth]
+    }
+
+    private void verifyPhoneNumberWithCode(String verificationId, String code) {
+        // [START verify_with_code]
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
+        // [END verify_with_code]
     }
 
 }

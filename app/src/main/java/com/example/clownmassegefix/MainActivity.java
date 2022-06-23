@@ -17,8 +17,6 @@ import com.example.clownmassegefix.databinding.ActivityMainBinding;
 import com.example.clownmassegefix.ui.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -41,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.Tabs);
         tabs.setupWithViewPager(viewPager);
-
-        final int MY_PERMISSIONS_READ_CONTACTS = 100;
 
         binding.floatingActionButton2.setOnClickListener (new View.OnClickListener () {
             @Override

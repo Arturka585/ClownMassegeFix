@@ -1,69 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     tools:context=".Registration">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="186dp"
+        android:text="Имя пользователя"
+        android:textColor="#EBE0FF"
+        android:textColorHint="#d4d4d4"/>
 
-    <Button
-        android:id="@+id/Register"
-        android:layout_width="210dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="68dp"
-        android:background="@drawable/save_buttom"
-        android:text="Зарегестрироваться"
-        android:textColor="@color/purple_500"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Phone" />
+    <EditText
+        android:id="@+id/UserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="99dp"
+        android:background="@drawable/text_view"
+        android:ems="10"
+        android:hint="Как вас зовут"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColorHint="#d4d4d4" />
+
 
     <Button
         android:id="@+id/SingIn"
-        android:layout_width="210dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SingUp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="117dp"
+        android:layout_marginBottom="178dp"
         android:background="@drawable/save_buttom"
+        android:padding="10dp"
         android:text="У меня есть аккаунт"
-        android:textColor="#EBE0FF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Register"
-        app:layout_constraintVertical_bias="0.164" />
+        android:textColor="@color/white" />
 
     <EditText
-        android:id="@+id/Phone"
-        android:layout_width="212dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="128dp"
-        android:background="@drawable/save_buttom"
+        android:id="@+id/Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="99dp"
+        android:background="@drawable/text_view"
         android:ems="10"
-        android:gravity="center"
-        android:hint="Ваш номер телефона"
+        android:hint="Ваша почта"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:padding="10dp"
         android:textColor="@color/white"
-        android:textColorHint="#d4d4d4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:textColorHint="#d4d4d4" />
+
+    <EditText
+        android:id="@+id/Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="99dp"
+        android:background="@drawable/text_view"
+        android:ems="10"
+        android:hint="Ваш пароль"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="#d4d4d4" />
+
+    <EditText
+        android:id="@+id/Confirm_Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="99dp"
+        android:background="@drawable/text_view"
+        android:ems="10"
+        android:hint="Подтвердите пароль"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="#d4d4d4" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Email"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="259dp"
+        android:text="Пароль"
+        android:textColor="#EBE0FF" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Password"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="154dp"
+        android:text="Подтверждение пароля"
+        android:textColor="#EBE0FF" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/UserName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="267dp"
+        android:text="Почта"
+        android:textColor="#EBE0FF" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="221dp"
-        android:layout_height="165dp"
+        android:layout_width="184dp"
+        android:layout_height="134dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="104dp"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/clown" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/SingUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Confirm_Password"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="false"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="107dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/corned_view"
+        android:padding="10dp"
+        android:text="Зарегестрироваться" />
+
+</RelativeLayout>

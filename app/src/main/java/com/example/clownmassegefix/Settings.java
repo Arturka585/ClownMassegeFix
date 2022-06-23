@@ -2,6 +2,7 @@ package com.example.clownmassegefix;
 
 import static androidx.core.provider.FontsContractCompat.Columns.RESULT_CODE_OK;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -24,6 +29,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.net.URI;
 import java.util.HashMap;
 
 public class Settings extends Fragment {
@@ -76,26 +82,38 @@ public class Settings extends Fragment {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance ().signOut ();
-                startActivity (new Intent (Settings.this.getActivity (),Login.class));
+                startActivity (new Intent (Settings.this.getActivity (),LoginWithEmail.class));
                 Settings.this.getActivity().finish();
-            }
-        });
-        binding.button2.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick(View view) {
-                Intent gallery = new Intent ().setAction (Intent.ACTION_GET_CONTENT).setType ("image/*");
-                startActivityForResult (gallery,1);
             }
         });
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_CODE_OK && data != null){
-            Uri uri = data.getData();
-            ImageView userImage = getView().findViewById(R.id.profile_image);
-            userImage.setImageURI(uri);
-        }
+    public void GalleryImage(){
+        Intent gallery = new Intent ().setAction (Intent.ACTION_GET_CONTENT).setType ("image/*");
+        galleryLauncher.launch(gallery);
     }
+
+
+    ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                    }
+                }
+            }
+    );
+
+
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_CODE_OK && data != null){
+//            Uri uri = data.getData();
+//            ImageView userImage = getView().findViewById(R.id.profile_image);
+//            userImage.setImageURI(uri);
+//        }
+//    }
 }

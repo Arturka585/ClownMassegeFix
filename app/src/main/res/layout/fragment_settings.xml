@@ -36,9 +36,9 @@
         android:textColor="@android:color/holo_red_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChangeName" />
+        app:layout_constraintTop_toBottomOf="@+id/ChangeName"
+        app:layout_constraintVertical_bias="0.101" />
 
     <EditText
         android:id="@+id/userName"
@@ -59,29 +59,16 @@
 
     <Button
         android:id="@+id/ChangeName"
-        android:layout_width="123dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="208dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
         android:background="@drawable/save_buttom"
         android:gravity="center"
         android:text="Изменить имя"
         android:textColor="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="94dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/ChangeName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        android:padding="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

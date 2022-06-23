@@ -69,7 +69,6 @@ public class Chats extends Fragment {
         binding.chatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                String profileUID =users.get(position);
 //                Toast.makeText(Chats.this.getActivity(), profileUID, Toast.LENGTH_SHORT).show();
 //                Intent profile = new Intent(Chats.this.getActivity(),Profile.class);
 //                profile.putExtra("profileUID",profileUID);

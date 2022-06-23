@@ -36,8 +36,8 @@ public class Messages extends AppCompatActivity {
 
         FirebaseAuth currentUser = FirebaseAuth.getInstance ();
 
-        ArrayList<CustomObject> objects = new ArrayList<CustomObject>();
-        CustomAdapter customAdapter = new CustomAdapter(this, objects);
+        ArrayList<CustomObject> messages = new ArrayList<CustomObject>();
+        CustomAdapter customAdapter = new CustomAdapter(this, messages);
         binding.listMessages.setAdapter(customAdapter);
 
 
@@ -58,7 +58,7 @@ public class Messages extends AppCompatActivity {
                     }
                     if(message.length() != 0 && timekek.length() != 0 )
                     {
-                        objects.add(new CustomObject(message, timekek));
+                        messages.add(new CustomObject(message, timekek));
                     }
                 }
             }
